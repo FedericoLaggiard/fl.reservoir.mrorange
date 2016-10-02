@@ -9,6 +9,7 @@
   "author": "Federico Laggiard",
   "license": "ISC",
   "dependencies": {
+    "axios": "0.14.0",
     "bootstrap.native": "1.0.4",
     "react": "15.3.2",
     "react-dom": "15.3.2",

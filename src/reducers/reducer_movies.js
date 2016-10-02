@@ -1,12 +1,14 @@
-//import { FETCH_POSTS , FETCH_POST} from '../actions/index';
+import { FETCH_MOVIES } from '../actions/index';
 
 const INITIAL_STATE = {
   all: [],
-  searchTerm: null
+  movie: null
 };
 
 export default function(state = INITIAL_STATE, action){
   switch(action.type){
+    case FETCH_MOVIES:
+      return { ...state, all: action.payload.data };
     default:
       return state;
   }
