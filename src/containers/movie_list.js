@@ -2,13 +2,28 @@
  * Created by federicolaggiard on 03/10/16.
  */
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import MovieListItem from '../components/movie_list_item';
+import { selectMovie } from '../actions/index';
 
 class MovieList extends Component {
 
+  constructor(props){
+    super(props);
+
+    this.state = {
+      selectedMovieId: -1
+    }
+  }
+
+  openMovieRow(movieId){
+    this.props.selectMovie(movieId);
+  }
+
   render(){
+
     return (
       <div className="col-xs-12">
         <div className="row">
@@ -17,7 +32,7 @@ class MovieList extends Component {
               {
                 this.props.movies.results ?
                   this.props.movies.results.map( movie =>
-                    <MovieListItem movie={movie} key={ movie.id }/>
+                    <MovieListItem movie={ movie } openMovieRow={ this.openMovieRow.bind(this) } key={ movie.id } selectedMovieId={ this.props.selectedMovieId }/>
                   )
                 :
                   'nothing'
@@ -31,10 +46,16 @@ class MovieList extends Component {
 
 }
 
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({
+    selectMovie
+  }, dispatch)
+}
 function mapStateToProps(state){
   return {
-    movies: state.movies.all
+    movies: state.movies.all,
+    selectedMovieId: state.movies.movie
   }
 }
 
-export default connect(mapStateToProps)(MovieList);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
