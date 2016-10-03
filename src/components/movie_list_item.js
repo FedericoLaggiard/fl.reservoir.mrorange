@@ -8,7 +8,7 @@ import Style from '../../styles/movie_list_item.css';
 
 const MovieListItem = ({ movie, openMovieRow, selectedMovieId }) => {
 
-  const imgBaseUrl = 'https://image.tmdb.org/t/p/w500';
+  const imgBaseUrl = 'https://image.tmdb.org/t/p/w92';
   let itemClass = "row movie-row-detail" + (selectedMovieId === movie.id ? ' open' : '');
 
   return (
