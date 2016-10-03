@@ -15,7 +15,10 @@ const middlewareEnhancer = applyMiddleware(...middlewares);
 const enhancers = compose(middlewareEnhancer, window.devToolsExtension && window.devToolsExtension());
 
 const store = createStore(reducers, {
-    movies: null
+    movies: {
+      all: [],
+      movie: null
+    }
   }, enhancers);
 
 
